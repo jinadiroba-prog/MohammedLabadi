@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Fruit & Vegetable Ranking</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;padding:30px;font-family:Arial,sans-serif;
+ background:#ffffff;
+ color:#172033;min-height:100vh
+}
+h1{color:#002b6b;text-align:center;font-size:36px;margin:10px 0 6px}
+.subtitle{color:#667085;text-align:center;margin:0 0 25px}
+.weights{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.weight{
+ background:linear-gradient(90deg,#005eff,#00b3ff);
+ color:white;padding:10px 16px;border-radius:3px;font-weight:bold
+}
+.fruits{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:22px;
+ max-width:1250px;
+ margin:auto;
+}
+.item{
+ position:relative;
+ background:rgba(255,255,255,.97);
+ border-radius:3px;
+ padding:16px;
+ text-align:center;
+ box-shadow:0 6px 20px rgba(0,0,0,.18);
+ transition:.2s;
+ overflow:hidden
+}
+.item:hover{
+ transform:translateY(-5px);
+ box-shadow:0 12px 28px rgba(0,0,0,.3)
+}
+.rank,.score{
+ position:absolute;
+ top:10px;
+ padding:7px 10px;
+ border-radius:2px;
+ color:white;
+ font-weight:bold;
+ z-index:2
+}
+.rank{left:10px;background:#005eff}
+.score{right:10px;background:#172033}
+.image-box{
+ height:180px;
+ margin-top:18px;
+ border-radius:2px;
+ background:#eef4fb;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow:hidden
+}
+.image-box img{
+ width:100%;
+ height:100%;
+ object-fit:contain
+}
+.placeholder{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ font-size:58px;
+ color:#8aa0bd
+}
+.placeholder span{
+ font-size:11px;
+ font-weight:bold;
+ margin-top:6px;
+ color:#7b8da6
+}
+h2{
+ font-size:19px;
+ color:#002b6b;
+ margin:12px 0 4px
+}
+.type{
+ font-size:13px;
+ color:#667085;
+ margin-bottom:10px
+}
+.properties{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:6px;
+ text-align:left;
+ font-size:12px
+}
+.properties div{
+ background:#f0f4fa;
+ padding:7px;
+ border-radius:2px
+}
+.properties b{float:right}
+.tier{
+ display:inline-block;
+ margin-top:10px;
+ padding:5px 13px;
+ border-radius:2px;
+ font-weight:bold
+}
+.note{
+ max-width:1250px;
+ margin:25px auto 0;
+ background:white;
+ border-radius:3px;
+ padding:13px;
+ text-align:center;
+ color:#667085
+}
+@media(max-width:1000px){
+ .fruits{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:550px){
+ body{padding:15px}
+ .fruits{grid-template-columns:1fr}
+ h1{font-size:28px}
+}
+</style></head>
+<body>
+<h1>Fruit & Vegetable Ranking</h1>
+<p class="subtitle">25 items • 4 cards per row • Your exact scores</p>
+
+<div class="weights">
+ <div class="weight">👅 Taste 65%</div>
+ <div class="weight">💪 Benefits 15%</div>
+ <div class="weight">💰 Price 10%</div>
+ <div class="weight">🛒 Availability 5%</div>
+ <div class="weight">🌱 Potential 5%</div>
+</div>
+
+<div class="fruits">
+
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#1</div>
+      <div class="score">90</div>
+      <div class="image-box">
+        <img src="https://www.fervalle.com/wp-content/uploads/2022/07/mandarin-2-300x300.png" alt="Tangerine"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍊 Tangerine</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>94</b></div>
+        <div>💪 Benefits <b>84</b></div>
+        <div>💰 Price <b>98</b></div>
+        <div>🛒 Availability <b>60</b></div>
+        <div>🌱 Potential <b>70</b></div>
+      </div>
+      <div class="scientific-name"><i>Citrus reticulata</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#2</div>
+      <div class="score">89</div>
+      <div class="image-box">
+        <img src="https://png.pngtree.com/png-clipart/20240404/original/pngtree-group-of-potatoes-isolated-on-white-nature-studio-root-photo-png-image_14751009.png" alt="Potato"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🥔 Potato</h2>
+      <div class="type">Vegetable</div>
+      <div class="properties">
+        <div>👅 Taste <b>89</b></div>
+        <div>💪 Benefits <b>78</b></div>
+        <div>💰 Price <b>98</b></div>
+        <div>🛒 Availability <b>98</b></div>
+        <div>🌱 Potential <b>95</b></div>
+      </div>
+      <div class="scientific-name"><i>Solanum tuberosum</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#3</div>
+      <div class="score">88</div>
+      <div class="image-box">
+        <img src="https://plantsguru.com/cdn/shop/files/Ripe-Pomegranate-Fruit-on-Tree-Branch.jpg?v=1755687567" alt="Pomegranate"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>❤️ Pomegranate</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>89</b></div>
+        <div>💪 Benefits <b>94</b></div>
+        <div>💰 Price <b>85</b></div>
+        <div>🛒 Availability <b>62</b></div>
+        <div>🌱 Potential <b>85</b></div>
+      </div>
+      <div class="scientific-name"><i>Punica granatum</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#4</div>
+      <div class="score">87</div>
+      <div class="image-box">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/050/030/237/small/onion-vegetable-isolate-allium-cepa-clipart-fresh-brown-onion-illustration-png.png" alt="Onion"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🧅 Onion</h2>
+      <div class="type">Vegetable</div>
+      <div class="properties">
+        <div>👅 Taste <b>83</b></div>
+        <div>💪 Benefits <b>88</b></div>
+        <div>💰 Price <b>99</b></div>
+        <div>🛒 Availability <b>96</b></div>
+        <div>🌱 Potential <b>95</b></div>
+      </div>
+      <div class="scientific-name"><i>Allium cepa</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#5</div>
+      <div class="score">86</div>
+      <div class="image-box">
+        <img src="https://cdn.shopify.com/s/files/1/0059/8835/2052/files/Valencia_Orange_4_FGT_089fd49e-fed9-42a2-bf4a-8c14711b1a06.jpg?v=1712857383" alt="Orange"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍊 Orange</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>87</b></div>
+        <div>💪 Benefits <b>84</b></div>
+        <div>💰 Price <b>98</b></div>
+        <div>🛒 Availability <b>68</b></div>
+        <div>🌱 Potential <b>78</b></div>
+      </div>
+      <div class="scientific-name"><i>Citrus sinensis</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#6</div>
+      <div class="score">85</div>
+      <div class="image-box">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/056/608/636/small_2x/a-whole-pineapple-and-a-juicy-pineapple-slice-isolated-on-white-background-a-delicious-tropical-fruit-free-png.png" alt="Pineapple"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍍 Pineapple</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>87</b></div>
+        <div>💪 Benefits <b>93</b></div>
+        <div>💰 Price <b>73</b></div>
+        <div>🛒 Availability <b>57</b></div>
+        <div>🌱 Potential <b>92</b></div>
+      </div>
+      <div class="scientific-name"><i>Ananas comosus</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#7</div>
+      <div class="score">84</div>
+      <div class="image-box">
+        <img src="https://freepngimg.com/download/watermelon/2-2-watermelon-free-download-png.png" alt="Watermelon"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍉 Watermelon</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>87</b></div>
+        <div>💪 Benefits <b>81</b></div>
+        <div>💰 Price <b>95</b></div>
+        <div>🛒 Availability <b>53</b></div>
+        <div>🌱 Potential <b>69</b></div>
+      </div>
+      <div class="scientific-name"><i>Citrullus lanatus</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#8</div>
+      <div class="score">84</div>
+      <div class="image-box">
+        <img src="https://www.dole.com/sites/default/files/styles/1024w768h-80/public/media/2025-01/grapes.png?itok=YugivX6G-5BSFx78-" alt="Grape"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍇 Grape</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>87</b></div>
+        <div>💪 Benefits <b>81</b></div>
+        <div>💰 Price <b>76</b></div>
+        <div>🛒 Availability <b>66</b></div>
+        <div>🌱 Potential <b>87</b></div>
+      </div>
+      <div class="scientific-name"><i>Vitis vinifera</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#9</div>
+      <div class="score">84</div>
+      <div class="image-box">
+        <img src="https://cdn.britannica.com/36/167236-050-BF90337E/Ears-corn.jpg" alt="Corn"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🌽 Corn</h2>
+      <div class="type">Vegetable</div>
+      <div class="properties">
+        <div>👅 Taste <b>85</b></div>
+        <div>💪 Benefits <b>75</b></div>
+        <div>💰 Price <b>89</b></div>
+        <div>🛒 Availability <b>68</b></div>
+        <div>🌱 Potential <b>94</b></div>
+      </div>
+      <div class="scientific-name"><i>Zea mays</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#10</div>
+      <div class="score">84</div>
+      <div class="image-box">
+        <img src="https://static.wikia.nocookie.net/my-first-encyclopedia/images/9/9a/Carrot-PNG-Clipart.png/revision/latest/scale-to-width-down/340?cb=20220711193537" alt="Carrot"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🥕 Carrot</h2>
+      <div class="type">Vegetable</div>
+      <div class="properties">
+        <div>👅 Taste <b>77</b></div>
+        <div>💪 Benefits <b>95</b></div>
+        <div>💰 Price <b>97</b></div>
+        <div>🛒 Availability <b>98</b></div>
+        <div>🌱 Potential <b>97</b></div>
+      </div>
+      <div class="scientific-name"><i>Daucus carota</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#11</div>
+      <div class="score">83</div>
+      <div class="image-box">
+        <img src="https://www.greefa.com/wp-content/uploads/2016/05/web750px_0000_tomaat.png" alt="Tomato"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍅 Tomato</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>78</b></div>
+        <div>💪 Benefits <b>94</b></div>
+        <div>💰 Price <b>86</b></div>
+        <div>🛒 Availability <b>95</b></div>
+        <div>🌱 Potential <b>97</b></div>
+      </div>
+      <div class="scientific-name"><i>Solanum lycopersicum</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#12</div>
+      <div class="score">83</div>
+      <div class="image-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBHksjlD_3Xjs9t4FMzGpQO0N0D8M3as5IYtZLHdNQ_vgapFe7M76Qywws&s=10" alt="Apple"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍎 Apple</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>86</b></div>
+        <div>💪 Benefits <b>73</b></div>
+        <div>💰 Price <b>78</b></div>
+        <div>🛒 Availability <b>89</b></div>
+        <div>🌱 Potential <b>68</b></div>
+      </div>
+      <div class="scientific-name"><i>Malus domestica</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#13</div>
+      <div class="score">82</div>
+      <div class="image-box">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/049/731/425/small/a-single-ripe-plum-with-a-transparent-background-perfect-for-your-design-needs-png.png" alt="Plum"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🟣 Plum</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>85</b></div>
+        <div>💪 Benefits <b>79</b></div>
+        <div>💰 Price <b>73</b></div>
+        <div>🛒 Availability <b>64</b></div>
+        <div>🌱 Potential <b>89</b></div>
+      </div>
+      <div class="scientific-name"><i>Prunus domestica</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#14</div>
+      <div class="score">83</div>
+      <div class="image-box">
+        <img src="https://i0.wp.com/produtosnaturaisbh.com.br/wp-content/uploads/2021/07/melao.webp?fit=600%2C600&ssl=1" alt="Canary melon"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍈 Canary melon</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>85</b></div>
+        <div>💪 Benefits <b>77</b></div>
+        <div>💰 Price <b>92</b></div>
+        <div>🛒 Availability <b>51</b></div>
+        <div>🌱 Potential <b>84</b></div>
+      </div>
+      <div class="scientific-name"><i>Cucumis melo</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#15</div>
+      <div class="score">82</div>
+      <div class="image-box">
+        <img src="https://freepngimg.com/thumb/banana/26-banana-png-image-bananas-picture-download.png" alt="Banana"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍌 Banana</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>81</b></div>
+        <div>💪 Benefits <b>83</b></div>
+        <div>💰 Price <b>77</b></div>
+        <div>🛒 Availability <b>87</b></div>
+        <div>🌱 Potential <b>95</b></div>
+      </div>
+      <div class="scientific-name"><i>Musa acuminata</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#16</div>
+      <div class="score">82</div>
+      <div class="image-box">
+        <img src="https://www.veggipedia.nl/_next/image?url=https%3A%2F%2Fveggipedia-cms.production.taks.zooma.cloud%2Fassets%2FUploads%2FProducts%2FAardbei-fruit-veggipedia__FitMaxWzYwMCw2MDBd.png&w=3840&q=75" alt="Strawberry"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍓 Strawberry</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>83</b></div>
+        <div>💪 Benefits <b>86</b></div>
+        <div>💰 Price <b>82</b></div>
+        <div>🛒 Availability <b>65</b></div>
+        <div>🌱 Potential <b>80</b></div>
+      </div>
+      <div class="scientific-name"><i>Fragaria × ananassa</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#17</div>
+      <div class="score">81</div>
+      <div class="image-box">
+        <img src="https://www.dole.com/sites/default/files/media/avocados-cut-web.png" alt="Avocado"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🥑 Avocado</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>80</b></div>
+        <div>💪 Benefits <b>96</b></div>
+        <div>💰 Price <b>69</b></div>
+        <div>🛒 Availability <b>64</b></div>
+        <div>🌱 Potential <b>93</b></div>
+      </div>
+      <div class="scientific-name"><i>Persea americana</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#18</div>
+      <div class="score">81</div>
+      <div class="image-box">
+        <img src="https://www.dole.com/sites/default/files/styles/1024w768h-80/public/media/2025-01/pears.png?itok=H8JVbgUV-mnypkIp1" alt="Pear"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍐 Pear</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>85</b></div>
+        <div>💪 Benefits <b>66</b></div>
+        <div>💰 Price <b>82</b></div>
+        <div>🛒 Availability <b>73</b></div>
+        <div>🌱 Potential <b>84</b></div>
+      </div>
+      <div class="scientific-name"><i>Pyrus communis</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#19</div>
+      <div class="score">79</div>
+      <div class="image-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnI347LsXQPYsF280CILaVizKOL0THgcB2jug-DIoLlYo2ktk99YXtObc&s=10" alt="Honeydew"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍈 Honeydew</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>82</b></div>
+        <div>💪 Benefits <b>73</b></div>
+        <div>💰 Price <b>78</b></div>
+        <div>🛒 Availability <b>49</b></div>
+        <div>🌱 Potential <b>86</b></div>
+      </div>
+      <div class="scientific-name"><i>Cucumis melo</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#20</div>
+      <div class="score">80</div>
+      <div class="image-box">
+        <img src="https://www.veggipedia.nl/_next/image?url=https%3A%2F%2Fveggipedia-cms.production.taks.zooma.cloud%2Fassets%2FUploads%2FProducts%2Fknoflook-kruiden-veggipedia__FitMaxWzYwMCw2MDBd.png&w=3840&q=75" alt="Garlic"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🧄 Garlic</h2>
+      <div class="type">Vegetable</div>
+      <div class="properties">
+        <div>👅 Taste <b>75</b></div>
+        <div>💪 Benefits <b>99</b></div>
+        <div>💰 Price <b>76</b></div>
+        <div>🛒 Availability <b>85</b></div>
+        <div>🌱 Potential <b>97</b></div>
+      </div>
+      <div class="scientific-name"><i>Allium sativum</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#21</div>
+      <div class="score">80</div>
+      <div class="image-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTukJg7wI4gyudV38J9i0Uf3iZ5LZFY6C8ZyKiVsrqs57cfJLOc6c26YN6c&s=10" alt="Fig"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🟣 Fig</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>84</b></div>
+        <div>💪 Benefits <b>76</b></div>
+        <div>💰 Price <b>67</b></div>
+        <div>🛒 Availability <b>60</b></div>
+        <div>🌱 Potential <b>85</b></div>
+      </div>
+      <div class="scientific-name"><i>Ficus carica</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#22</div>
+      <div class="score">80</div>
+      <div class="image-box">
+        <img src="https://fruitmasters.com/wp-content/uploads/2020/04/2020_Packshot_Nectarine_500x500px-300x300.png" alt="Nectarine"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍑 Nectarine</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>86</b></div>
+        <div>💪 Benefits <b>65</b></div>
+        <div>💰 Price <b>74</b></div>
+        <div>🛒 Availability <b>65</b></div>
+        <div>🌱 Potential <b>83</b></div>
+      </div>
+      <div class="scientific-name"><i>Prunus persica</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#23</div>
+      <div class="score">79</div>
+      <div class="image-box">
+        <img src="https://images.immediate.co.uk/production/volatile/sites/30/2024/02/Bowl-of-dates-6aae23f.jpg" alt="Date"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🌴 Date</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>80</b></div>
+        <div>💪 Benefits <b>77</b></div>
+        <div>💰 Price <b>65</b></div>
+        <div>🛒 Availability <b>83</b></div>
+        <div>🌱 Potential <b>96</b></div>
+      </div>
+      <div class="scientific-name"><i>Phoenix dactylifera</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#24</div>
+      <div class="score">78</div>
+      <div class="image-box">
+        <img src="https://mr-fothergills.com/cdn/shop/files/Aubergine_Baby_Jack_1_4cc944bb-d41a-4826-be52-1c0456f11e79.jpg?v=1745561595&width=2048" alt="Aubergine"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍆 Aubergine</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>76</b></div>
+        <div>💪 Benefits <b>67</b></div>
+        <div>💰 Price <b>98</b></div>
+        <div>🛒 Availability <b>84</b></div>
+        <div>🌱 Potential <b>96</b></div>
+      </div>
+      <div class="scientific-name"><i>Solanum melongena</i></div>
+    </article>
+    <article class="item" onclick="openFruit(this)">
+      <div class="rank">#25</div>
+      <div class="score">74</div>
+      <div class="image-box">
+        <img src="https://www.pngall.com/wp-content/uploads/2016/05/Lemon-PNG-Image.png" alt="Lemon"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      </div>
+      <h2>🍋 Lemon</h2>
+      <div class="type">Fruit</div>
+      <div class="properties">
+        <div>👅 Taste <b>65</b></div>
+        <div>💪 Benefits <b>98</b></div>
+        <div>💰 Price <b>77</b></div>
+        <div>🛒 Availability <b>84</b></div>
+        <div>🌱 Potential <b>98</b></div>
+      </div>
+      <div class="scientific-name"><i>Citrus limon</i></div>
+    </article>
+</div>
+
+<div class="note">
+<b>Adding images:</b> put your images in an <b>images</b> folder next to this HTML file,
+using names such as <b>tangerine.png</b>, <b>potato.png</b>, <b>pomegranate.png</b>, etc.
+</div>
+
+<script>
+function openFruit(card) {
+  const name = card.querySelector('h2').textContent
+    .replace(/^[^A-Za-z]+/, '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_|_$/g, '');
+  window.location.href = 'fruit_pages/' + name + '.html';
+}
+</script>
+
+</body>
+</html>
